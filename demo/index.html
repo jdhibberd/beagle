@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>A genetically evolved perfect Tic-Tac-Toe player</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+        <script src="{{ static_url('d3.js') }}" type="text/javascript"></script>
+        <script src="{{ static_url('main.js') }}" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="{{ static_url('main.css') }}" />
+    </head>
+    <body>
+        <div class="header">
+            <img class="gravatar" src="https://en.gravatar.com/userimage/29215904/1611a90c954e7eb940e181bf7daf6160.jpeg" />
+            <div class="copy">
+                <b>James Hibberd</b> &mdash; a software engineer from London currently working in Kuala Lumpur<br />
+                <a href="">Take a look at my resume</a>
+            </div>
+        </div>
+        <div class="content">
+            <h1>A genetically evolved perfect Tic-Tac-Toe player</h1>
+            <p>The "player" (which you can play against using the interactive game below) wasn't engineered directly but was instead evolved using a <a href="http://en.wikipedia.org/wiki/Genetic_algorithm" target="_blank">genetic algorithm</a>. The algorithm starts with a population of candidates who exhibit random playing strategies and, by applying principles of natural selection, evolves the population through successive generations until the target candidate emerges &mdash; a Tic-Tac-Toe player that never loses a game.
+            </p>
+            <div class="game-area">
+                <div class="grid">
+                    <div class="row">
+                        <div id='cell_0' class="cell cell-left cell-top"></div>
+                        <div id='cell_1' class="cell cell-top"></div>
+                        <div id='cell_2' class="cell cell-right cell-top"></div>
+                    </div>
+                    <div class="row">
+                        <div id='cell_3' class="cell cell-left"></div>
+                        <div id='cell_4' class="cell"></div>
+                        <div id='cell_5' class="cell cell-right"></div>
+                    </div>
+                    <div class="row">
+                        <div id='cell_6' class="cell cell-left cell-bottom"></div>
+                        <div id='cell_7' class="cell cell-bottom"></div>
+                        <div id='cell_8' class="cell cell-right cell-bottom"></div>
+                    </div>
+                </div>
+                <div class="info">
+                    <div>X &rarr; <span id='player_x'></span></div>
+                    <div>O &rarr; <span id='player_o'></span></div>
+                    <div id="game_outcome">
+                        <span id="game_outcome_msg">The computer wins.</span><br />
+                        <a href="javascript:resetGame();">Play again</a>
+                    </div>
+                </div>
+            </div>
+            <p>The "player" was evolved in 2 mins 7 secs on a virtualized Linux OS with 2 GB RAM and 1.7 Ghz Intel Core i5 processor. The genetic algorithm used a population size of 500 and took 21 generations to evolve the target candidate. The following chart shows the percentage of games (out of all possible Tic-Tac-Toe games) lost by the best candidate in each generation.</p>
+            <div id='chart'></div>
+            <p>The following is the "DNA" of the target candidate. It represents the optimum move to make in all 627 unique Tic-Tac-Toe game scenarios.</p>
+            <div class="dna">[4, 4, 0, 2, 5, 5, 5, 7, 5, 7, 3, 3, 4, 1, 0, 1, 5, 4, 5, 5, 0, 6, 0, 4, 1, 3, 8, 5, 8, 1, 4, 3, 0, 1, 3, 6, 3, 6, 6, 3, 4, 2, 3, 6, 1, 7, 5, 6, 4, 2, 3, 5, 6, 0, 0, 1, 5, 2, 3, 5, 8, 7, 8, 4, 7, 4, 7, 3, 4, 8, 5, 2, 6, 2, 7, 3, 5, 2, 7, 2, 4, 1, 1, 1, 2, 0, 3, 0, 7, 4, 1, 7, 0, 1, 0, 3, 6, 5, 1, 6, 3, 0, 3, 7, 6, 8, 5, 2, 5, 5, 5, 8, 7, 1, 7, 1, 4, 7, 5, 8, 5, 4, 3, 3, 7, 6, 8, 5, 0, 7, 5, 8, 2, 5, 5, 0, 6, 1, 1, 5, 7, 5, 8, 1, 1, 8, 6, 4, 8, 0, 0, 6, 4, 3, 3, 6, 2, 1, 7, 5, 2, 1, 7, 7, 3, 1, 6, 0, 7, 0, 3, 3, 4, 7, 1, 2, 6, 8, 7, 0, 3, 4, 7, 5, 2, 4, 2, 6, 8, 7, 0, 6, 6, 2, 3, 7, 3, 3, 7, 5, 0, 5, 7, 3, 7, 0, 8, 7, 2, 7, 6, 6, 7, 3, 4, 8, 5, 6, 1, 6, 8, 0, 7, 5, 3, 2, 5, 4, 7, 4, 8, 3, 2, 1, 5, 3, 0, 7, 4, 8, 1, 7, 4, 2, 8, 3, 5, 6, 6, 7, 3, 7, 0, 2, 6, 1, 7, 3, 6, 0, 6, 5, 3, 0, 0, 7, 5, 2, 8, 4, 6, 2, 7, 4, 0, 1, 5, 3, 8, 4, 2, 3, 7, 0, 6, 5, 1, 0, 7, 5, 6, 8, 7, 2, 6, 8, 6, 4, 3, 7, 4, 5, 3, 3, 7, 7, 5, 6, 2, 8, 1, 7, 4, 0, 2, 6, 0, 2, 0, 3, 4, 7, 7, 6, 6, 4, 5, 3, 6, 8, 4, 6, 4, 0, 1, 2, 4, 4, 8, 1, 4, 8, 7, 4, 0, 3, 1, 5, 5, 8, 2, 8, 7, 1, 2, 1, 7, 8, 5, 3, 0, 4, 8, 4, 8, 7, 2, 0, 0, 5, 6, 8, 1, 7, 2, 5, 1, 5, 5, 7, 0, 4, 8, 1, 6, 1, 1, 2, 8, 3, 4, 6, 4, 4, 3, 0, 0, 7, 3, 3, 6, 2, 3, 4, 5, 7, 6, 8, 1, 4, 0, 8, 5, 0, 5, 5, 2, 8, 5, 8, 7, 4, 0, 6, 4, 7, 4, 8, 0, 5, 6, 2, 3, 0, 1, 5, 6, 4, 8, 5, 7, 4, 5, 0, 5, 4, 4, 5, 8, 6, 3, 0, 2, 0, 1, 3, 8, 6, 8, 8, 0, 1, 7, 1, 3, 8, 0, 2, 1, 1, 8, 1, 1, 0, 7, 4, 4, 0, 6, 3, 7, 7, 6, 5, 0, 0, 1, 7, 1, 3, 7, 6, 0, 5, 2, 8, 2, 7, 8, 6, 0, 1, 7, 3, 7, 6, 6, 2, 5, 7, 6, 8, 4, 6, 8, 1, 8, 5, 7, 5, 5, 4, 2, 1, 6, 8, 6, 8, 2, 4, 6, 4, 7, 2, 1, 0, 6, 2, 8, 0, 4, 6, 4, 8, 6, 2, 1, 4, 7, 2, 6, 8, 1, 0, 6, 5, 1, 0, 5, 3, 3, 4, 6, 1, 5, 6, 7, 6, 8, 7, 5, 6, 0, 0, 0, 8, 7, 8, 7, 4, 2, 0, 4, 1, 1, 0, 2, 0, 8, 5, 1, 3, 4, 5, 7, 6, 3, 8, 0, 3, 2, 4, 5, 4, 2, 1, 0, 5, 3, 6, 4, 7, 4, 5, 5, 7, 7, 0, 5, 1, 2, 5, 2, 1, 8, 2, 3]</div>
+            <p>The genetic algorithm is implemented in Haskell (source code: <a target="_blank" href="https://github.com/jhibberd/beagle/blob/master/Beagle.hs">https://github.com/jhibberd/beagle</a>) and is based on the theory outlined in "<a target="_blank" href="http://www.cs.ucl.ac.uk/staff/ucacbbl/ftp/papers/koza/sp2003/hochmuth.pdf">On the Genetic Evolution of a Perfect Tic-Tac-Toe Strategy</a>" by Gregor Hochmuth, Stanford University.</p>
+        </div>
+    </body>
+</html>
